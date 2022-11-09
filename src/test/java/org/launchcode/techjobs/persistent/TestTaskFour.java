@@ -213,7 +213,7 @@ public class TestTaskFour extends AbstractTest {
         employerRepositoryField.setAccessible(true);
         employerRepositoryField.set(listController, employerRepository);
 
-        listController.list(model, skillRepository, employerRepository);
+        listController.list(model);
     }
 
     @Test
