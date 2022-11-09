@@ -3,6 +3,8 @@ package org.launchcode.techjobs.persistent.models;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Job extends AbstractEntity{
@@ -11,16 +13,16 @@ public class Job extends AbstractEntity{
     @JoinColumn(name = "employer_id")
     private Employer employer;
 
-    @ManyToOne
+    @ManyToMany
     @JoinColumn(name = "skills_id")
-    private Skill skills;
+    private List<Skill> skills = new ArrayList<>();
 
     public Job() {}
 
-    public Job(Employer anEmployer, Skill someSkills) {
+    public Job(Employer anEmployer, List<Skill> skills) {
         super();
         this.employer = anEmployer;
-        this.skills = someSkills;
+        this.skills = skills;
     }
 
     // Getters and setters.
@@ -33,11 +35,11 @@ public class Job extends AbstractEntity{
         this.employer = employer;
     }
 
-    public Skill getSkills() {
+    public List<Skill> getSkills() {
         return skills;
     }
 
-    public void setSkills(Skill skills) {
+    public void setSkills(List<Skill> skills) {
         this.skills = skills;
     }
 }
